@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://portals-labs.github.io/portals-sdk/portals-sdk.js?v=10005456"></script>
+  <script src="https://portals-labs.github.io/portals-sdk/portals-sdk.js?v=100239"></script>
   <meta charset="UTF-8" />
   <title>Cancel Run Button</title>
   <style>
@@ -70,13 +70,18 @@
   </button>
 
   <script>
+      function onPageLoad() {
+        PortalsSdk.focusGameKeyboard()
+      }
+
+      document.addEventListener('DOMContentLoaded', onPageLoad);
     
-     function sendMessage(taskName, targetState) {
+      function sendMessage(taskName, targetState) {
         const message = {
           TaskName: taskName,
           TaskTargetState: targetState
         };
-        PortalsSdk.sendMessageToUnity(JSON.stringify(message));
+          PortalsSdk.sendMessageToUnity(JSON.stringify(message));
       }
 
       window.onload = () => {
@@ -86,9 +91,10 @@
       function closeIframe() {
         PortalsSdk.closeIframe();
       }
-    function cancelRun() {
-      sendMessage('cancelTimers', 'SetActiveToNotActive');
-      closeIframe();
+      function cancelRun() {
+        sendMessage('cancelTimers', 'SetActiveToNotActive');
+        PortalsSdk.focusGameKeyboard()
+        closeIframe();
     }
   </script>
 </body>
