@@ -73,7 +73,7 @@
       function onPageLoad() {
         PortalsSdk.focusGameKeyboard()
       }
-
+      window.addEventListener('load', onPageLoad);
       document.addEventListener('DOMContentLoaded', onPageLoad);
     
       function sendMessage(taskName, targetState) {
